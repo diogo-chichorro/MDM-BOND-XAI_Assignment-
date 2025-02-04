@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load dataset
-file_path = 'Employee.csv'
+file_path = 'dataset/Employee.csv'
 df = pd.read_csv(file_path)
 
 # Display basic information
