@@ -66,8 +66,10 @@ if 'LeaveOrNot' in df.columns:
     test_loss, test_acc = model.evaluate(X_test, y_test)
     print(f"\nTest Accuracy: {test_acc:.2f}")
 
+    predict_fn=lambda x: (model.predict(x) > 0.5).astype(int).flatten()
+
     # Explain model predictions using Anchors
-    explainer = AnchorTabular(predict_fn=lambda x: (model.predict(x) > 0.5).astype(int).flatten(), feature_names=X.columns.tolist())
+    explainer = AnchorTabular(predict_fn, feature_names=X.columns.tolist())
     
     # Fit the explainer to the training data
     explainer.fit(X_train.values)
